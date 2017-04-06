@@ -170,7 +170,7 @@ int main()
     key = "Hgaj2q!zhquJ>Ak?qdk8wck;Subvol%18-0v_dnk49cvQjkzNUp&`aZqjv~-jsmdr}k£,@ajeI9MevK_jwQUH)yw<j4JNwqK$%ldshjbdKnQW^2u(hmls?ma}yLS=¬M"; //1024bit key
     //key = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
     //M   = "This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER "; //Long message
-     M   = "This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER "; //Long message 1024B
+     M   = "This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER "; //Long message 2048B
     //key=" ";
     choice = "n";
 
@@ -265,11 +265,13 @@ int main()
     ofstream linearityfiletwo;
     ofstream pokerfile;
     ofstream encfile;
+    ofstream encbitfile;
     //ofstream pokerfiletwo;
     linearityfile.open("nonlinearitydata.txt");
     linearityfiletwo.open("nonlinearitydata8.txt");
     pokerfile.open("pokerfile.txt");
     encfile.open("encfile.txt");
+    encbitfile.open("encbitfile.txt");
     //pokerfiletwo.open("pokerfile2.txt");
     #endif // SHOW_Properties
     for(ic=0; ic<M.size(); ic++)
@@ -287,6 +289,7 @@ int main()
             #endif // SHOW_Properties
         cout << char(bitMs[ic].to_ulong()) ;    // ENCRYPTED OUTPUT
         encfile << char(bitMs[ic].to_ulong());
+        encbitfile << bitMs[ic].to_string();
     }
     for(int iw=0; iw<16;iw++)pokerfile << statArr[iw] << endl;
 #ifdef SHOW_Properties
@@ -296,6 +299,7 @@ int main()
     linearityfiletwo.close();
     pokerfile.close();
     encfile.close();
+    encbitfile.close();
     //pokerfiletwo.close();
     //DECRYPTION
 #ifdef FAST_Decrypt
