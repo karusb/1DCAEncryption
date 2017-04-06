@@ -11,6 +11,7 @@ using namespace std;
 #define NODEBUG_MODE // SET DEBUG_MODE FOR VISUAL
 #define SHOW_Properties // SET SHOW_Properties for analysis
 #define ManyBytes
+#define nFAST_Decrypt
 //ADD METHOD FOR FILES
 const bool bitval [16*4]= {0,0,0,0,
 0,0,0,1,
@@ -166,8 +167,8 @@ int main()
 #else
     // SUBDIVIDE NON LINEARITY TOCREATE HISTOGRAM
     gens = 50;
-    //key = "Hgaj2q!zhquJ>Ak?qdk8wck;Subvol%18-0v_dnk49cvQjkzNUp&`aZqjv~-jsmdr}k£,@ajeI9MevK_jwQUH)yw<j4JNwqK$%ldshjbdKnQW^2u(hmls?ma}yLS=¬M"; //1024bit key
-    key = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+    key = "Hgaj2q!zhquJ>Ak?qdk8wck;Subvol%18-0v_dnk49cvQjkzNUp&`aZqjv~-jsmdr}k£,@ajeI9MevK_jwQUH)yw<j4JNwqK$%ldshjbdKnQW^2u(hmls?ma}yLS=¬M"; //1024bit key
+    //key = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
     //M   = "This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER "; //Long message
      M   = "This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER "; //Long message 1024B
     //key=" ";
@@ -198,17 +199,20 @@ int main()
         for(int i=key.size(); i<M.size(); i++)
         {
             bitKn[i] =  bitset<8>(key[t]);
+            bitK[i] = bitset<8>(key[t]);
             if(t==key.size())t=0;
             t+=1;
         }
     }
     cout <<endl<<endl<<"Key:";
+    // TODO : NEED A BETTER IMPLEMENTATION
     if(key.size() < 128)
     {
         for(int i=0; i<128;i++)
         {   int cur=(i%key.size());
 
             bitKn[i] = bitset<8>(key[cur]);
+            bitK[i] = bitset<8>(key[cur]);
             //for(int ic=0;i<128; i++)evolve39318(bitKn[ic]);
             cout << char(bitKn[i].to_ulong());
         }
@@ -218,6 +222,7 @@ int main()
         for(int i=0;i<128;++i)
         {
             bitKn[i] =  bitset<8>(key[i]);
+            bitK[i]=  bitset<8>(key[i]);
             cout << char(bitKn[i].to_ulong());
         }
     }
@@ -259,10 +264,12 @@ int main()
     ofstream linearityfile;
     ofstream linearityfiletwo;
     ofstream pokerfile;
+    ofstream encfile;
     //ofstream pokerfiletwo;
     linearityfile.open("nonlinearitydata.txt");
     linearityfiletwo.open("nonlinearitydata8.txt");
     pokerfile.open("pokerfile.txt");
+    encfile.open("encfile.txt");
     //pokerfiletwo.open("pokerfile2.txt");
     #endif // SHOW_Properties
     for(ic=0; ic<M.size(); ic++)
@@ -279,6 +286,7 @@ int main()
             pokertest(bitMs[ic]);
             #endif // SHOW_Properties
         cout << char(bitMs[ic].to_ulong()) ;    // ENCRYPTED OUTPUT
+        encfile << char(bitMs[ic].to_ulong());
     }
     for(int iw=0; iw<16;iw++)pokerfile << statArr[iw] << endl;
 #ifdef SHOW_Properties
@@ -287,8 +295,10 @@ int main()
     linearityfile.close();
     linearityfiletwo.close();
     pokerfile.close();
+    encfile.close();
     //pokerfiletwo.close();
     //DECRYPTION
+#ifdef FAST_Decrypt
     cout <<endl<<endl<< "Decrypted message:";
     for(ic=0; ic<M.size(); ic++)
     {
@@ -297,6 +307,40 @@ int main()
 
         cout << char(bitMd[ic].to_ulong()) ;    // DECRYPTED OUTPUT
     }
-    //TODO
+    ////////////////////////////////////////////////
+#else
+ofstream decfile;
+decfile.open("decfile.txt");
+    for(int gen=0; gen<gens; gen++)
+    {
+        for(ic=0; ic<M.size(); ic++)
+        {
+            //evolve39318(bitM[ic]);
+            evolve57630(bitK[ic]);
+            //evolve39318(bitK[ic]);
+            //devolve57630(bitK[ic]);
+            #ifdef DEBUG_MODE
+            cout << bitM[ic].to_string() <<"                    "<<bitK[ic].to_string()<<endl;
+            #endif // DEBUG_MODE
+        }
+#ifdef DEBUG_MODE
+      for(ic=0;ic<M.size();ic++)cout << char(bitM[ic].to_ulong()); // OUTPUT STRING EQUIVALENT
+      cout<<"                    ";
+        for(ic=0;ic<key.size();ic++)cout << char(bitK[ic].to_ulong());
+        cout <<endl;
+        // system ("CLS"); // COOL
+#endif // DEBUG_MODE
+    }
+
+        cout <<endl<<endl<< "Decrypted message:";
+    for(ic=0; ic<M.size(); ic++)
+    {
+        for (int i = 0; i <= 7; i++)
+            bitMd[ic][i] = bitMs[ic][i] ^ bitK[ic][i]; // XOR EVOLVED KEY WITH THE ENCRYPTED MESSAGE
+
+        cout << char(bitMd[ic].to_ulong()) ;    // DECRYPTED OUTPUT
+        decfile << char(bitMd[ic].to_ulong());
+    }
+#endif
     return 0;
 }
