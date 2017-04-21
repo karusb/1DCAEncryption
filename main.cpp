@@ -160,15 +160,13 @@ int main()
     cin >> gens;
     cout <<"Input pass phrase: ";
     cin >> key;
-    cout << "File input (Y/N) ";
-    cin >> choice;
     cout <<"Input message: ";
     cin >> M;
 #else
     // SUBDIVIDE NON LINEARITY TOCREATE HISTOGRAM
     gens = 50;
-    key = "Hgaj2q!zhquJ>Ak?qdk8wck;Subvol%18-0v_dnk49cvQjkzNUp&`aZqjv~-jsmdr}k£,@ajeI9MevK_jwQUH)yw<j4JNwqK$%ldshjbdKnQW^2u(hmls?ma}yLS=¬M"; //1024bit key
-    //key = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+    //key = "Hgaj2q!zhquJ>Ak?qdk8wck;Subvol%18-0v_dnk49cvQjkzNUp&`aZqjv~-jsmdr}k£,@ajeI9MevK_jwQUH)yw<j4JNwqK$%ldshjbdKnQW^2u(hmls?ma}yLS=¬M"; //1024bit key
+    key = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
     //M   = "This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER "; //Long message
      M   = "This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER "; //Long message 2048B
     //key=" ";
