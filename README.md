@@ -9,5 +9,5 @@ XOR Based Encryption Using Cellular Automata
 - Note : It's easier to download CodeBlocks (download here:http://www.codeblocks.org/downloads/26) with mingw package and simply compile and run the program with one click.
 # Compiling the program using linux
 - Use g++ library in from the linux repository. If not available simply run "sudo apt-get install g++" on command line.
-- change to the source directory on command line and run "g++ -Wall -o main main.c" then run the executable with "./main" DONE!
-- NOTE: Some windows system functions are used therefore those need to be disabled to compile without an error.
+- change to the source directory on command line and run "g++ -o main.o main.c" then link with "g++ -o main main.o" and run the executable with "./main" DONE!
+- NOTE: Some system functions are used therefore those might not be supported by your OS though it does not affect the algorith itself.
