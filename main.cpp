@@ -1,3 +1,22 @@
+/*
+    BazCrypt 4 Neighbourhood Cellular Automata XOR Encryption
+    Copyright (C) 2017  Baris Tanyeri
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+*/
 #define nUSER_Input    //SET USER_Input to allow user input
 #define NODEBUG_MODE // SET DEBUG_MODE FOR VISUAL
 #define SHOW_Properties // SET SHOW_Properties for show analysis results
@@ -5,6 +24,8 @@
 #define KEY     "nottingham"
 #define GENERATIONS 3354
 #define MESSAGE "alicansokaksanatcisi"
+
+#define GNULICENSE "    BazCrypt  Copyright (C) 2017  Baris Tanyeri \n  This program comes with ABSOLUTELY NO WARRANTY.\n    This is free software, and you are welcome to redistribute it \n    under certain conditions; refer to GNU V3 Public License."
 
 
 #include <iostream>
@@ -164,6 +185,7 @@ void pokertest(std::bitset<8> &s)
 }
 int main()
 {
+    cout << GNULICENSE <<endl<<endl<<endl;
     logfile.open("log.txt");
     int gens;
     int ic;
@@ -206,6 +228,7 @@ int main()
     //if(M.size()<128)bitset<8> bitKn[128];
     bitset<8> bitKn[M.size()];
     bitset<20000> K;
+    K.reset();
     bitset<20000> Kd;
     bitset<8> bitMs[M.size()];
     bitset<8> bitMd[M.size()];
