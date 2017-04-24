@@ -11,3 +11,10 @@ XOR Based Encryption Using Cellular Automata
 - Use g++ library in from the linux repository. If not available simply run "sudo apt-get install g++" on command line.
 - change to the source directory on command line and run "g++ -o main.o -c main.c" then link with "g++ -o main main.o" and run the executable with "./main" DONE!
 - NOTE: Some system functions are used therefore those might not be supported by your OS though it does not affect the algorith itself.
+# Running postprocessing on Matlab
+- Make sure the directories for the imported datafiles are correctly set.
+- Make sure to use pokerfile outputs for variables denoted with Px and "nonlinearity" files with variables denoted with Sx
+- It has predefined 6 examples that are included in the repository at /data
+- Poker results are given as Pxres where x is the sample number on matlab console and standard deviations are given as MPx1
+- For monobit tests, only the mean is given as Mx on Matlab console where x is the sample number
+![Algorithm Flowchart](https://github.com/karusb/1DCAEncryption/blob/master/encflow.jpg)
