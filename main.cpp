@@ -21,12 +21,28 @@
 #define NODEBUG_MODE // SET DEBUG_MODE FOR VISUAL
 #define SHOW_Properties // SET SHOW_Properties for show analysis results
 #define nFAST_Decrypt // SET FAST ENCRYPTION ONLY TO DEMONSTRATE!
+
+
+////////// STATIC USER INPUT ///////////
+////////////////////////////////////////
 #define KEY     "nottingham"
-#define GENERATIONS 3354
-#define MESSAGE "alicansokaksanatcisi"
+#define GENERATIONS 19000
+#define MESSAGE "I need help at location NG7 2RD arrive ASAP"
+////////////////////////////////////////
+////// SAMPLE MESSAGES AND KEYS ////////
+    //key = "Hgaj2q!zhquJ>Ak?qdk8wck;Subvol%18-0v_dnk49cvQjkzNUp&`aZqjv~-jsmdr}k£,@ajeI9MevK_jwQUH)yw<j4JNwqK$%ldshjbdKnQW^2u(hmls?ma}yLS=¬M"; //1024bit key
+    //2017B//
+    //"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scis enim me quodam tempore Metapontum venisse tecum neque ad hospitem ante devertisse, quam Pythagorae ipsum illum locum, ubi vitam ediderat, sedemque viderim. Aufidio, praetorio, erudito homine, oculis capto, saepe audiebam, cum se lucis magis quam utilitatis desiderio moveri diceret. Nihil est enim, de quo minus dubitari possit, quam et honesta expetenda per se et eodem modo turpia per se esse fugienda. Duo Reges: constructio interrete. Ita fit illa conclusio non solum vera, sed ita perspicua, ut dialectici ne rationem quidem reddi putent oportere: si illud, hoc; Hic Speusippus, hic Xenocrates, hic eius auditor Polemo, cuius illa ipsa sessio fuit, quam videmus. Nec vero dico eorum metum mortis, qui, quia privari se vitae bonis arbitrentur, aut quia quasdam post mortem formidines extimescant, aut si metuant, ne cum dolore moriantur, idcirco mortem fugiant; Quibus rebus vita consentiens virtutibusque respondens recta et honesta et constans et naturae congruens existimari potest. Quibus autem in rebus tanta obscuratio non fit, fieri tamen potest, ut id ipsum, quod interest, non sit magnum. Ratio enim nostra consentit, pugnat oratio. Haec mirabilia videri intellego, sed cum certe superiora firma ac vera sint, his autem ea consentanea et consequentia, ne de horum quidem est veritate dubitandum. Itaque non discedit ab eorum curatione, quibus praeposita vitam omnem debet gubernare, ut mirari satis istorum inconstantiam non possim. Persecutus est Aristoteles animantium omnium ortus, victus, figuras, Theophrastus autem stirpium naturas omniumque fere rerum, quae e terra gignerentur, causas atque rationes; Eam tum adesse, cum dolor omnis absit; Quaeque de virtutibus dicta sunt, quem ad modum eae semper voluptatibus inhaererent, eadem de amicitia dicenda sunt. De maximma autem re eodem modo, divina mente atque natura mundum universum et eius maxima partis administrari. In homine autem summa omnis animi est et in animo rationis, ex qua virtus est, quae rationis absolutio definitur, quam etiam atque etiam explicandam putant.";
+    //5000 BITS
+    //"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quod non faceret, si in voluptate summum bonum poneret. Eam stabilem appellas. Si stante, hoc natura videlicet vult, salvam esse se, quod concedimus; Duo Reges: constructio interrete. Virtutis, magnitudinis animi, patientiae, fortitudinis fomentis dolor mitigari solet. Et ille ridens: Video, inquit, quid agas; Nonne igitur tibi videntur, inquit, mala? Ex rebus enim timiditas, non ex vocabulis nascitur. Quae hic rei publicae vulnera inponebat, eadem ille sanabat. Quid enim de amicitia statueris utilitatis causa expetenda vides. Ubi ut eam caperet aut quando? Stup";
+    //20000BITS
+    //"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mihi, inquam, qui te id ipsum rogavi? Illud vero minime consectarium, sed in primis hebes, illorum scilicet, non tuum, gloriatione dignam esse beatam vitam, quod non possit sine honestate contingere, ut iure quisquam glorietur. Nec tamen exprimi verbum e verbo necesse erit, ut interpretes indiserti solent, cum sit verbum, quod idem declaret, magis usitatum. Hic homo severus luxuriam ipsam per se reprehendendam non putat, et hercule, Torquate, ut verum loquamur, si summum bonum voluptas est, rectissime non putat. Ut, inquit, in fidibus pluribus, nisi nulla earum non ita contenta nervis sit, ut concentum servare possit, omnes aeque incontentae sint, sic peccata, quia discrepant, aeque discrepant; Quanta autem ab illis varietas argumentorum ratione concludentium eorumque cum captiosis interrogationibus dissimilitudo! Quid, quod plurimis locis quasi denuntiant, ut neque sensuum fidem sine ratione nec rationis sensibus exquiramus? Et si in ipsa gubernatione neglegentia est navis eversa, maius est peccatum in auro quam in palea. Duo Reges: constructio interrete. Habes, inquam, Cato, formam eorum, de quibus loquor, philosophorum. Illud enim rectum est quod katortwma dicebas contingitque sapienti soli, hoc autem inchoati cuiusdam officii est, non perfecti, quod cadere in non nullos insipientes potest. Ut optime, secundum naturam affectum esse possit. In sapientem solum cadit, isque finis bonorum, ut ab ipsis Stoicis scriptum videmus, a Xenocrate atque ab Aristotele constitutus est. Sed si duo honesta proposita sint, alterum cum valitudine, alterum cum morbo, non esse dubium, ad utrum eorum natura nos ipsa deductura sit. Tenere autem virtutes eas ipsas, quarum modo feci mentionem, nemo poterit, nisi statuerit nihil esse, quod intersit aut differat aliud ab alio, praeter honesta et turpia. Quarum cum una sit, qua mores conformari putantur, differo eam partem, quae quasi stirps ets huius quaestionis. Equidem in omnibus istis conclusionibus hoc putarem philosophia nobisque dignum, et maxime, cum summum bonum quaereremus, vitam nostram, consilia, voluntates, non verba corrigi. Hic si Peripateticus fuisset, permansisset, credo, in sententia, qui dolorem malum dicunt esse, de asperitate autem eius fortiter ferenda praecipiunt eadem, quae Stoici. Vides igitur, si amicitiam sua caritate metiare, nihil esse praestantius, sin emolumento, summas familiaritates praediorum fructuosorum mercede superari. Praeclare enim Epi";
+    //Different 20000 BITS
+    //"Hic quoque suus est de summoque bono dissentiens dici vere Peripateticus non potest. Obscura, inquit, quaedam esse confiteor, nec tamen ab illis ita dicuntur de industria, sed inest in rebus ipsis obscuritas. Beatus sibi videtur esse moriens. Utrum enim sit voluptas in iis rebus, quas primas secundum naturam esse diximus, necne sit ad id, quod agimus, nihil interest. Nam et a te perfici istam disputationem volo, nec tua mihi oratio longa videri potest. Quae possunt eadem contra Carneadeum illud summum bonum dici, quod is non tam, ut probaret, protulit, quam ut Stoicis, quibuscum bellum gerebat, opponeret. Voluptatis causa, etiam si eam non consequare, aut non dolendi, etiam si id assequi nequeas, aut eorum, quae secundum naturam sunt, adipiscendi, etiam si nihil consequare. Ea, quae dialectici nunc tradunt et docent, nonne ab illis instituta sunt aut inventa sunt? Nos autem non solum beatae vitae istam esse oblectationem videmus, sed etiam levamentum miseriarum. An quae de prudentia, de cognitione rerum, de coniunctione generis humani, quaeque ab eisdem de temperantia, de modestia, de magnitudine animi, de omni honestate dicuntur? Vitae autem degendae ratio maxime quidem illis placuit quieta. Nam ceteris in rebus síve praetermissum sive ignoratum est quippiam, non plus incommodi est, quam quanti quaeque earum rerum est, in quibus neglectum est aliquíd. Eam si varietatem diceres, intellegerem, ut etiam non dicente te intellego; Ut enim, inquit, gubernator aeque peccat, si palearum navem evertit et si auri, item aeque peccat, qui parentem et qui servum iniuria verberat. Nonne videmus quanta perturbatio rerum omnium consequatur, quanta confusio? Nam si dicent ab illis has res esse tractatas, ne ipsos quidem Graecos est cur tam multos legant, quam legendi sunt. Quid enim mihi potest esse optatius quam cum Catone, omnium virtutum auctore, de virtutibus disputare? Quae hic rei publicae vulnera inponebat, eadem ille sanabat. Familiares nostros, credo, Sironem dicis et Philodemum, cum optimos viros, tum homines doctissimos. Quae iam oratio non a philosopho aliquo, sed a censore opprimenda est. Sic igitur in homine perfectio ista in eo potissimum, quod est optimum, id est in virtute, laudatur. Nunc idem, nisi molestum est, quoniam tibi non omnino displicet definire et id facis, cum vis, velim definias quid sit voluptas, de quo omnis haec quaestio est. Sed isti ipsi, qui voluptate et dolore omnia metiuntur, nonne clamant sapienti plus semper adesse quod velit quam q";
 
+///////////////////////////////////////
 #define GNULICENSE "    BazCrypt  Copyright (C) 2017  Baris Tanyeri \n  This program comes with ABSOLUTELY NO WARRANTY.\n    This is free software, and you are welcome to redistribute it \n    under certain conditions; refer to GNU V3 Public License."
-
+#define KEYEVOLVEOUT // DO NOT USE ! ONLY USE FOR CRYPTOTESTS! OUTPUTS THE ACTUAL EVOLVED KEY TO DECRYPT CIPHERTEXT
 
 #include <iostream>
 using namespace std;
@@ -35,6 +51,7 @@ using namespace std;
 #include <stdlib.h>
 #include <fstream>
 #include <math.h>
+#include <cmath>
 #define SIZE 32
 
 
@@ -152,35 +169,22 @@ int nonlinearityhalftwo(std::bitset<8> &s)
 void pokertest(std::bitset<8> &s)
 {
     logfile << "pokertest: Starting pokertest for given bits.." <<endl;
-    for(int i=0; i < 5 ; i+=4)
+    for(int i=0; i <= 5 ; i+=4)
     {
         for(int t=0; t<61; t+=4)
         {
-
-
-            if(s[i] == bitval[t])
+            if(s[i] == bitval[t] && s[i+1] == bitval[t+1] && s[i+2] == bitval[t+2] && s[i+3] == bitval[t+3]) // CHECK THE OCCURRENCES SPECIFIED IN BITVAL
             {
-                if(s[i+1] == bitval[t+1])
+                if(t > 0)
                 {
-                    if(s[i+2] == bitval[t+2])
-                    {
-                        if(s[i+3] == bitval[t+3])
-                        {
-                            if(t > 0)
-                            {
-                                statArr[t/4] = statArr[t/4] +1;
-                            }
-                            else
-                            {
-                                statArr[t]=statArr[t]+1;
-                            }
-                        }
-                    }
+                    statArr[t/4] = statArr[t/4] +1;
                 }
-
+                else
+                {
+                    statArr[t]=statArr[t]+1;
+                }
             }
         }
-
     }
 }
 int main()
@@ -188,11 +192,10 @@ int main()
     cout << GNULICENSE <<endl<<endl<<endl;
     logfile.open("log.txt");
     int gens;
-    int ic;
+    unsigned int ic;
     string M;
     string encM;
     string key;
-    string choice;
     system ("color 0A");
     int gen=0;
     logfile << "Main: Init variables complete.." <<endl;
@@ -210,33 +213,23 @@ int main()
 
     gens = GENERATIONS;
     key = KEY;
-//    M = MESSAGE;
-    //gens = 78;
-    //key = "Hgaj2q!zhquJ>Ak?qdk8wck;Subvol%18-0v_dnk49cvQjkzNUp&`aZqjv~-jsmdr}k£,@ajeI9MevK_jwQUH)yw<j4JNwqK$%ldshjbdKnQW^2u(hmls?ma}yLS=¬M"; //1024bit key
-    //key = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-    //M   = "This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER "; //Long message
-    //M   = "This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER This is a secret message, Tell Everyone to change Baris Tanyeri's grades to 100, his student id is 4183078, Regards Your MASTER "; //Long message 2048B
-//2017B//
-    //M = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scis enim me quodam tempore Metapontum venisse tecum neque ad hospitem ante devertisse, quam Pythagorae ipsum illum locum, ubi vitam ediderat, sedemque viderim. Aufidio, praetorio, erudito homine, oculis capto, saepe audiebam, cum se lucis magis quam utilitatis desiderio moveri diceret. Nihil est enim, de quo minus dubitari possit, quam et honesta expetenda per se et eodem modo turpia per se esse fugienda. Duo Reges: constructio interrete. Ita fit illa conclusio non solum vera, sed ita perspicua, ut dialectici ne rationem quidem reddi putent oportere: si illud, hoc; Hic Speusippus, hic Xenocrates, hic eius auditor Polemo, cuius illa ipsa sessio fuit, quam videmus. Nec vero dico eorum metum mortis, qui, quia privari se vitae bonis arbitrentur, aut quia quasdam post mortem formidines extimescant, aut si metuant, ne cum dolore moriantur, idcirco mortem fugiant; Quibus rebus vita consentiens virtutibusque respondens recta et honesta et constans et naturae congruens existimari potest. Quibus autem in rebus tanta obscuratio non fit, fieri tamen potest, ut id ipsum, quod interest, non sit magnum. Ratio enim nostra consentit, pugnat oratio. Haec mirabilia videri intellego, sed cum certe superiora firma ac vera sint, his autem ea consentanea et consequentia, ne de horum quidem est veritate dubitandum. Itaque non discedit ab eorum curatione, quibus praeposita vitam omnem debet gubernare, ut mirari satis istorum inconstantiam non possim. Persecutus est Aristoteles animantium omnium ortus, victus, figuras, Theophrastus autem stirpium naturas omniumque fere rerum, quae e terra gignerentur, causas atque rationes; Eam tum adesse, cum dolor omnis absit; Quaeque de virtutibus dicta sunt, quem ad modum eae semper voluptatibus inhaererent, eadem de amicitia dicenda sunt. De maximma autem re eodem modo, divina mente atque natura mundum universum et eius maxima partis administrari. In homine autem summa omnis animi est et in animo rationis, ex qua virtus est, quae rationis absolutio definitur, quam etiam atque etiam explicandam putant.";
-    //key="nottingham";
-    M = "I need help at location NG7 2RD arrive ASAP";
-    choice = "n";
-
+    logfile << "Main: Evolving for " << gens << "  generations "<<endl;
+    M = MESSAGE;
 #endif // Static_Input
     bitset<8> bitM[M.size()];
     bitset<8> bitK[M.size()];
-    //if(M.size()<128)bitset<8> bitKn[128];
     bitset<8> bitKn[M.size()];
     bitset<20000> K;
     K.reset();
     bitset<20000> Kd;
     bitset<8> bitMs[M.size()];
     bitset<8> bitMd[M.size()];
-    float nonlineardata [M.size()];
+
     logfile << "Main: bitsets defined..." <<endl;
     int b=0;
-    int nbits = M.size()*8;
+    int nbits = M.size()*8; //bits in the string
     int by=0;
+
     // BITSET CONVERSIONS
     cout <<"Plain:";
     for (std::size_t i = 0; i < M.size(); ++i)
@@ -260,10 +253,10 @@ int main()
 //    }
     cout <<endl<<endl<<"Key:";
     // TODO : USE SHA256 FOR KEY
-    if(key.size() < 128)
+    if(key.size() < M.size())
     {
-        logfile << "Main: input Key less than 128.. regenerating key.." <<endl;
-        for(int i=0; i<M.size(); i++)
+        logfile << "Main: input Key less than Message size.. regenerating key.." <<endl;
+        for(unsigned int i=0; i<M.size(); i++)
         {
             int cur=(i%key.size());
 
@@ -275,8 +268,8 @@ int main()
     }
     else
     {
-        logfile << "Main: Key size bigger than 128.. scaling key..." <<endl;
-        for(int i=0; i<128; ++i)
+        logfile << "Main: Key size text size equal or key bigger.." <<endl;
+        for(int i=0; i<M.size(); ++i)
         {
             bitKn[i] =  bitset<8>(key[i]);
             bitK[i]=  bitset<8>(key[i]);
@@ -320,21 +313,28 @@ int main()
         // system ("CLS"); // COOL
 #endif // DEBUG_MODE
     }
-
+#ifdef KEYEVOLVEOUT
+    ofstream keyout;
+    keyout.open("keyout.txt");
+#endif // KEYEVOLVEOUT
     // SPLIT THE WORLD IN SMALLER WORLDS
     for (int i = 0; i <= nbits-1; i++)
     {
         bitKn[by].set(i%8,K.test(i));
-
+#ifdef KEYEVOLVEOUT
+        keyout << K.test(i);
+#endif
         if(i%8==0)by+=1;
     }
-
+#ifdef KEYEVOLVEOUT
+    keyout.close();
+#endif
     logfile << "Main: Evolution complete .." <<endl;
     cout <<endl<< "EVOLVED"<<endl<<endl;
     cout << "Encrypted message:";
     //XOR OPERATION ENCRYPTION
     int oncount=0;
-    int oncountout=0,oncountone=0,oncounttwo=0;
+    int oncountone=0,oncounttwo=0;
 #ifdef SHOW_Properties
     logfile << "Main: Show cryptanalysis defined.." <<endl;
     ofstream linearityfile;
@@ -371,7 +371,7 @@ int main()
         encbitfile << bitMs[ic].to_string();
     }
     logfile << "Main: Encryption finished running.." <<endl;
-    double monoout= erfc(double(double(double(oncount-((M.size()*8)-oncount))/double(M.size()*8))/sqrt(2)));
+    double monoout= erfc(double(double(double(std::abs(double(oncount-((M.size()*8)-oncount))))/double((sqrt(M.size()*8))))/sqrt(2)));
     if(monoout<0.01)
     {
         cout <<endl<<"Failed to pass monobits test"<<endl;
