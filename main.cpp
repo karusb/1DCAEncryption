@@ -52,12 +52,12 @@ using namespace std;
 #include <fstream>
 #include <math.h>
 #include <cmath>
-#define SIZE 32
+
 
 
 ofstream logfile;
 
-//ADD METHOD FOR FILES
+// Bit Values to search are defined here
 const bool bitval [16*4]= {0,0,0,0,
                            0,0,0,1,
                            0,0,1,0,
@@ -76,7 +76,9 @@ const bool bitval [16*4]= {0,0,0,0,
                            1,1,1,1
                           };
 int statArr[16]= {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-/* TRY USING ZEROES FOR SPECIFIC DECLARATIONS IN EVOLVE FUNCTIONS WHEN THEY ARE OUT OF SCOPE*/
+// EVOLVE FUNCTIONS
+// Inputs MUST be a bitset of 20000 bits
+// Nbytes is the message size in bytes which determines the boundaries of evolution within the world
 void evolve39318(std::bitset<20000> &s,int nbytes)
 {
     logfile << "evolve38318: Evolving.." <<endl;
@@ -116,7 +118,7 @@ void evolve57630z(std::bitset<20000> &s,int nbytes) //ZERO BOUNDARY EVOLUTION
 
     for (i = 0; i <= nbits-1; i++)s[i] = t[i];
 }
-void evolve57630b(std::bitset<20000> &s,int nbytes) //ZERO BOUNDARY EVOLUTION
+void evolve57630b(std::bitset<20000> &s,int nbytes) //CYCLIC BOUNDARY EVOLUTION
 {
     int i=0,nbits=0;
     nbits = nbytes*8;
@@ -135,7 +137,8 @@ void evolve57630b(std::bitset<20000> &s,int nbytes) //ZERO BOUNDARY EVOLUTION
     for (i = 0; i <= nbits-1; i++)s[i] = t[i];
 
 }
-
+// Bit counting functions that takes a bitset of 8 bits as input
+// Half functions counts the half of the set hence 2 functions "halfone" "halftwo"
 int nonlinearity(std::bitset<8> &s)
 {
     logfile << "nonlinearity: Nonlinearity count on 8 bits starting.." <<endl;
@@ -166,12 +169,14 @@ int nonlinearityhalftwo(std::bitset<8> &s)
     }
     return oncount;
 }
+
+// Poker test functions takes bitsets of 8 which counts the occurences of the bit values given in array bitval
 void pokertest(std::bitset<8> &s)
 {
     logfile << "pokertest: Starting pokertest for given bits.." <<endl;
-    for(int i=0; i <= 5 ; i+=4)
+    for(int i=0; i <= 5 ; i+=4) // iterates twice for 8 bits
     {
-        for(int t=0; t<61; t+=4)
+        for(int t=0; t<61; t+=4) //go through bitvals
         {
             if(s[i] == bitval[t] && s[i+1] == bitval[t+1] && s[i+2] == bitval[t+2] && s[i+3] == bitval[t+3]) // CHECK THE OCCURRENCES SPECIFIED IN BITVAL
             {
@@ -189,17 +194,19 @@ void pokertest(std::bitset<8> &s)
 }
 int main()
 {
+    // GNU License Output //
     cout << GNULICENSE <<endl<<endl<<endl;
+    // All Processes are logged in log.txt //
     logfile.open("log.txt");
     int gens;
     unsigned int ic;
-    string M;
-    string encM;
-    string key;
-    system ("color 0A");
+    string M;   // Message
+    string encM; // Encrypted Message
+    string key; // Key
+    system ("color 0A"); // Console colour green
     int gen=0;
     logfile << "Main: Init variables complete.." <<endl;
-#ifdef USER_Input
+#ifdef USER_Input // If defined asks inputs from the user
     logfile << "Main: User Input defined.." <<endl;
     cout << "Input generation number: ";
     cin >> gens;
@@ -209,13 +216,14 @@ int main()
     cin >> M;
     logfile << "Main: User Input entered.." <<endl;
 #else
-    // SUBDIVIDE NON LINEARITY TOCREATE HISTOGRAM
+// STATIC INPUTS IF USER_Input not defined
 
     gens = GENERATIONS;
     key = KEY;
     logfile << "Main: Evolving for " << gens << "  generations "<<endl;
     M = MESSAGE;
 #endif // Static_Input
+    // Define Bitsets to hold message and CA world
     bitset<8> bitM[M.size()];
     bitset<8> bitK[M.size()];
     bitset<8> bitKn[M.size()];
@@ -230,7 +238,7 @@ int main()
     int nbits = M.size()*8; //bits in the string
     int by=0;
 
-    // BITSET CONVERSIONS
+    // String to BITSET CONVERSIONS
     cout <<"Plain:";
     for (std::size_t i = 0; i < M.size(); ++i)
     {
@@ -240,6 +248,7 @@ int main()
     }
 
     logfile << "Main:  Message ASCII to boolean conversions complete" <<endl;
+    // Deprecated Key solution
 //    if(key.size() < M.size())
 //    {
 //        int t=0;
@@ -253,6 +262,7 @@ int main()
 //    }
     cout <<endl<<endl<<"Key:";
     // TODO : USE SHA256 FOR KEY
+    // Key Expansion //
     if(key.size() < M.size())
     {
         logfile << "Main: input Key less than Message size.. regenerating key.." <<endl;
@@ -268,8 +278,9 @@ int main()
     }
     else
     {
+        // This case is very unlikely considering a large message
         logfile << "Main: Key size text size equal or key bigger.." <<endl;
-        for(int i=0; i<M.size(); ++i)
+        for(unsigned int i=0; i<M.size(); ++i)
         {
             bitKn[i] =  bitset<8>(key[i]);
             bitK[i]=  bitset<8>(key[i]);
@@ -280,32 +291,29 @@ int main()
     //TRANSFER PASSWORD TO A BIGGER WORLD
     for (std::size_t i = 0; i < M.size()*8; ++i)
     {
-        K[i] = bitKn[b].test(i%8);
-        Kd[i] = K[i];
-        if(i%8 == 0)b+=1;
+        K[i] = bitKn[b].test(i%8); // check the values in bitKn
+        Kd[i] = K[i];   // transfer the values to Kd as shadow
+        if(i%8 == 0)b+=1; // Increase b at every 8 iterations
     }
     logfile << "Main: IV transferred to bigger world.." <<endl;
 #ifdef DEBUG_MODE
     cout <<endl<< "Message"<<"                    "<<"KEY"<<endl;
 #endif // DEBUG_MODE
-    // TODO: RESHAPE USER KEY HERE TO OBTAIN 1024 bit key
+
     // EVOLUTION
     logfile << "Main: Starting evolution.." <<endl;
     for(gen=0; gen<gens; gen++)
     {
         evolve57630b(K,M.size()); // This is done over the entire world doesnt need another loop
+        // Other evolve functions can be cascaded here
+#ifdef DEBUG_MODE // Only Activate to see how bits change
         for(ic=0; ic<M.size(); ic++)
         {
-            //evolve39318(bitM[ic]);
-            //original// evolve57630z(bitKn[ic]);
+            // Use Deprecated Functions here
 
-            //evolve39318(bitK[ic]);
-            //devolve57630(bitK[ic]);
-#ifdef DEBUG_MODE
             cout << bitM[ic].to_string() <<"                    "<<bitK[ic].to_string()<<endl;
-#endif // DEBUG_MODE
+
         }
-#ifdef DEBUG_MODE
         for(ic=0; ic<M.size(); ic++)cout << char(bitM[ic].to_ulong()); // OUTPUT STRING EQUIVALENT
         cout<<"                    ";
         for(ic=0; ic<key.size(); ic++)cout << char(bitKn[ic].to_ulong());
@@ -313,7 +321,7 @@ int main()
         // system ("CLS"); // COOL
 #endif // DEBUG_MODE
     }
-#ifdef KEYEVOLVEOUT
+#ifdef KEYEVOLVEOUT // Only Create an instance of keyout.txt if defined
     ofstream keyout;
     keyout.open("keyout.txt");
 #endif // KEYEVOLVEOUT
@@ -335,20 +343,20 @@ int main()
     //XOR OPERATION ENCRYPTION
     int oncount=0;
     int oncountone=0,oncounttwo=0;
-#ifdef SHOW_Properties
+#ifdef SHOW_Properties // This MUST be defined to perform poker cryptanalysis
     logfile << "Main: Show cryptanalysis defined.." <<endl;
     ofstream linearityfile;
     ofstream linearityfiletwo;
     ofstream pokerfile;
     ofstream encfile;
     ofstream encbitfile;
-    //ofstream pokerfiletwo;
+
     linearityfile.open("nonlinearitydata.txt");
     linearityfiletwo.open("nonlinearitydata8.txt");
     pokerfile.open("pokerfile.txt");
     encfile.open("encfile.txt");
     encbitfile.open("encbitfile.txt");
-    //pokerfiletwo.open("pokerfile2.txt");
+
     logfile << "Main: Opening files complete.." <<endl;
 #endif // SHOW_Properties
     logfile << "Main: Encryption started.." <<endl;
@@ -356,6 +364,7 @@ int main()
     {
         for (int i = 0; i <= 7; i++)
             bitMs[ic][i] = bitM[ic][i] ^ bitKn[ic][i]; // XOR KEY WITH THE MESSAGE
+        // Bit count functions
         oncount += nonlinearity(bitKn[ic]);
         oncountone += nonlinearityhalfone(bitKn[ic]);
         oncounttwo += nonlinearityhalftwo(bitKn[ic]);
@@ -365,19 +374,20 @@ int main()
         linearityfile << (nonlinearityhalftwo(bitKn[ic])*100)/(4) <<endl;
         linearityfiletwo << (nonlinearity(bitKn[ic])*100)/(8) <<endl;
         pokertest(bitKn[ic]);
-#endif // SHOW_Properties
-        cout << char(bitMs[ic].to_ulong()) ;    // ENCRYPTED OUTPUT
         encfile << char(bitMs[ic].to_ulong());
         encbitfile << bitMs[ic].to_string();
+#endif // SHOW_Properties
+        cout << char(bitMs[ic].to_ulong()) ;    // ENCRYPTED OUTPUT
+
     }
     logfile << "Main: Encryption finished running.." <<endl;
-    double monoout= erfc(double(double(double(std::abs(double(oncount-((M.size()*8)-oncount))))/double((sqrt(M.size()*8))))/sqrt(2)));
-    if(monoout<0.01)
+    double monoout= erfc(double(double(double(std::abs(double(oncount-((M.size()*8)-oncount))))/double((sqrt(M.size()*8))))/sqrt(2))); // This is the monobit magic equation of NIST SP800
+    if(monoout<0.01) // Needs to be >0.01
     {
         cout <<endl<<"Failed to pass monobits test"<<endl;
         logfile << "Main: Failed to pass monobits test.." <<endl;
     }
-#ifdef SHOW_Properties
+#ifdef SHOW_Properties // Poker test results
     logfile << "Main: Outputting properties.." <<endl;
     cout <<endl<< "Poker Test results:" << endl;
     for(int iw=0; iw<16; iw++)
@@ -396,7 +406,6 @@ int main()
     encbitfile.close();
 #endif // SHOW_Properties
 
-    //pokerfiletwo.close();
     //DECRYPTION
     logfile << "Main: Files are closed" <<endl;
 #ifdef FAST_Decrypt
@@ -417,19 +426,15 @@ int main()
     decfile.open("decfile.txt");
     for(int gen=0; gen<gens; gen++)
     {
-        evolve57630b(Kd,M.size()); // this needs to be here explained in encryption
+        evolve57630b(Kd,M.size()); // explained in encryption
+#ifdef DEBUG_MODE
         for(ic=0; ic<M.size(); ic++)
         {
-            //evolve39318(bitM[ic]);
-            //original//evolve57630z(bitK[ic]);
+            // Use deprecated functions here if encryted with deprecated functions
 
-            //evolve39318(bitK[ic]);
-            //devolve57630(bitK[ic]);
-#ifdef DEBUG_MODE
             cout << bitM[ic].to_string() <<"                    "<<bitK[ic].to_string()<<endl;
-#endif // DEBUG_MODE
+
         }
-#ifdef DEBUG_MODE
         for(ic=0; ic<M.size(); ic++)cout << char(bitM[ic].to_ulong()); // OUTPUT STRING EQUIVALENT
         cout<<"                    ";
         for(ic=0; ic<key.size(); ic++)cout << char(bitK[ic].to_ulong());
