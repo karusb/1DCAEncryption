@@ -17,9 +17,9 @@
 
 
 */
-#define nUSER_Input    //SET USER_Input to allow user input
+#define USER_Input    //SET USER_Input to allow user input
 #define NODEBUG_MODE // SET DEBUG_MODE FOR VISUAL
-#define SHOW_Properties // SET SHOW_Properties for show analysis results
+#define nSHOW_Properties // SET SHOW_Properties for show analysis results
 #define nFAST_Decrypt // SET FAST ENCRYPTION ONLY TO DEMONSTRATE!
 
 
@@ -42,7 +42,7 @@
 
 ///////////////////////////////////////
 #define GNULICENSE "    BazCrypt  Copyright (C) 2017  Baris Tanyeri \n  This program comes with ABSOLUTELY NO WARRANTY.\n    This is free software, and you are welcome to redistribute it \n    under certain conditions; refer to GNU V3 Public License."
-#define KEYEVOLVEOUT // DO NOT USE ! ONLY USE FOR CRYPTOTESTS! OUTPUTS THE ACTUAL EVOLVED KEY TO DECRYPT CIPHERTEXT
+#define nKEYEVOLVEOUT // DO NOT USE ! ONLY USE FOR CRYPTOTESTS! OUTPUTS THE ACTUAL EVOLVED KEY TO DECRYPT CIPHERTEXT
 
 #include <iostream>
 using namespace std;
@@ -52,7 +52,7 @@ using namespace std;
 #include <fstream>
 #include <math.h>
 #include <cmath>
-
+#include <string>
 
 
 ofstream logfile;
@@ -203,6 +203,8 @@ int main()
     string M;   // Message
     string encM; // Encrypted Message
     string key; // Key
+    string q; // quit parameter
+    bool pass = true;
     system ("color 0A"); // Console colour green
     int gen=0;
     logfile << "Main: Init variables complete.." <<endl;
@@ -213,7 +215,9 @@ int main()
     cout <<"Input pass phrase: ";
     cin >> key;
     cout <<"Input message: ";
-    cin >> M;
+    cin.ignore();
+    std::getline(std::cin,M,'\n');
+    //cin>> M;
     logfile << "Main: User Input entered.." <<endl;
 #else
 // STATIC INPUTS IF USER_Input not defined
@@ -224,6 +228,7 @@ int main()
     M = MESSAGE;
 #endif // Static_Input
     // Define Bitsets to hold message and CA world
+
     bitset<8> bitM[M.size()];
     bitset<8> bitK[M.size()];
     bitset<8> bitKn[M.size()];
@@ -299,9 +304,13 @@ int main()
 #ifdef DEBUG_MODE
     cout <<endl<< "Message"<<"                    "<<"KEY"<<endl;
 #endif // DEBUG_MODE
-
+    do
+    {
+    by=0;
     // EVOLUTION
     logfile << "Main: Starting evolution.." <<endl;
+    if (pass)
+    {
     for(gen=0; gen<gens; gen++)
     {
         evolve57630b(K,M.size()); // This is done over the entire world doesnt need another loop
@@ -320,6 +329,13 @@ int main()
         cout <<endl;
         // system ("CLS"); // COOL
 #endif // DEBUG_MODE
+    }
+    }
+    else
+    {
+        evolve57630b(K,M.size()); // This is done over the entire world doesnt need another loop
+        gens = gens +1;
+        cout << endl << "Your new generation number: " <<gens <<endl;
     }
 #ifdef KEYEVOLVEOUT // Only Create an instance of keyout.txt if defined
     ofstream keyout;
@@ -366,8 +382,8 @@ int main()
             bitMs[ic][i] = bitM[ic][i] ^ bitKn[ic][i]; // XOR KEY WITH THE MESSAGE
         // Bit count functions
         oncount += nonlinearity(bitKn[ic]);
-        oncountone += nonlinearityhalfone(bitKn[ic]);
-        oncounttwo += nonlinearityhalftwo(bitKn[ic]);
+        //oncountone += nonlinearityhalfone(bitKn[ic]);
+        //oncounttwo += nonlinearityhalftwo(bitKn[ic]);
 #ifdef SHOW_Properties
         //TEST LINEARITY
         linearityfile << (nonlinearityhalfone(bitKn[ic])*100)/(4) <<endl;
@@ -386,7 +402,14 @@ int main()
     {
         cout <<endl<<"Failed to pass monobits test"<<endl;
         logfile << "Main: Failed to pass monobits test.." <<endl;
+        pass =  false;
     }
+    else
+    {
+        pass = true;
+        cout << endl <<"Pass..."<<endl;
+    }
+
 #ifdef SHOW_Properties // Poker test results
     logfile << "Main: Outputting properties.." <<endl;
     cout <<endl<< "Poker Test results:" << endl;
@@ -398,14 +421,14 @@ int main()
 
     cout <<endl <<"Monobits:"<<monoout<<endl;
     //printf("%.10f",monoout);
-    cout <<endl <<"Monobits2:" << ((oncountone+oncounttwo)*100)/(8*M.size()) << endl;
+    cout <<endl <<"Monobits2:" << ((oncount)*100)/(8*M.size()) << endl;
     linearityfile.close();
     linearityfiletwo.close();
     pokerfile.close();
     encfile.close();
     encbitfile.close();
 #endif // SHOW_Properties
-
+    }while(pass==false);
     //DECRYPTION
     logfile << "Main: Files are closed" <<endl;
 #ifdef FAST_Decrypt
@@ -464,6 +487,8 @@ int main()
 #endif
     logfile << "Main:finished running.." <<endl;
     logfile.close();
+    cout << endl << endl<< "Encrypt & Decrypt Complete Press Enter Any Key to Continue..."<<endl;
+    cin >> q ;
     return 0;
 }
 /* DEPRECATED FUNCTIONS: DO NOT USE UNLESS YOU KNOW WHAT YOU ARE DOING
