@@ -19,15 +19,15 @@
 */
 #define USER_Input    //SET USER_Input to allow user input
 #define NODEBUG_MODE // SET DEBUG_MODE FOR VISUAL
-#define nSHOW_Properties // SET SHOW_Properties for show analysis results
-#define nFAST_Decrypt // SET FAST ENCRYPTION ONLY TO DEMONSTRATE!
+#define SHOW_Properties // SET SHOW_Properties for show analysis results
+
 
 
 ////////// STATIC USER INPUT ///////////
 ////////////////////////////////////////
 #define KEY     "nottingham"
-#define GENERATIONS 19000
-#define MESSAGE "I need help at location NG7 2RD arrive ASAP"
+#define GENERATIONS 19002
+#define MESSAGE "Today is the day I present BazCrypt"
 ////////////////////////////////////////
 ////// SAMPLE MESSAGES AND KEYS ////////
     //key = "Hgaj2q!zhquJ>Ak?qdk8wck;Subvol%18-0v_dnk49cvQjkzNUp&`aZqjv~-jsmdr}k£,@ajeI9MevK_jwQUH)yw<j4JNwqK$%ldshjbdKnQW^2u(hmls?ma}yLS=¬M"; //1024bit key
@@ -53,6 +53,7 @@ using namespace std;
 #include <math.h>
 #include <cmath>
 #include <string>
+#include <iostream>
 
 
 ofstream logfile;
@@ -204,7 +205,11 @@ int main()
     string encM; // Encrypted Message
     string key; // Key
     string q; // quit parameter
+    string fname; //filename parametere
+    string tempt; //temp data
+    ifstream inputdata; //input data
     bool pass = true;
+    bool filechoice = false;
     system ("color 0A"); // Console colour green
     int gen=0;
     logfile << "Main: Init variables complete.." <<endl;
@@ -214,11 +219,32 @@ int main()
     cin >> gens;
     cout <<"Input pass phrase: ";
     cin >> key;
+    cout <<"Choose : File (1) , Plain Text (0): ";
+    cin >> filechoice;
+    if (filechoice)
+    {
+        cout << "Please enter the filename that is within the executable directory"<<endl;
+        cin >> fname;
+        inputdata.open(fname.c_str());
+        inputdata.seekg(0, std::ios::end);
+        M.reserve(inputdata.tellg());
+        inputdata.seekg(0, std::ios::beg);
+
+        M.assign((std::istreambuf_iterator<char>(inputdata)),
+            std::istreambuf_iterator<char>());
+        inputdata.close();
+    }
+    else
+    {
+
+
     cout <<"Input message: ";
     cin.ignore();
     std::getline(std::cin,M,'\n');
+    }
     //cin>> M;
-    logfile << "Main: User Input entered.." <<endl;
+    logfile << "Main: User Input entered.. using option" <<filechoice<<endl;
+    logfile << "Main: Evolving for " << gens << "  generations "<<endl;
 #else
 // STATIC INPUTS IF USER_Input not defined
 
@@ -236,7 +262,6 @@ int main()
     K.reset();
     bitset<20000> Kd;
     bitset<8> bitMs[M.size()];
-    bitset<8> bitMd[M.size()];
 
     logfile << "Main: bitsets defined..." <<endl;
     int b=0;
@@ -253,21 +278,9 @@ int main()
     }
 
     logfile << "Main:  Message ASCII to boolean conversions complete" <<endl;
-    // Deprecated Key solution
-//    if(key.size() < M.size())
-//    {
-//        int t=0;
-//        for(int i=key.size(); i<M.size(); i++)
-//        {
-//            bitKn[i] =  bitset<8>(key[t]);
-//            bitK[i] = bitset<8>(key[t]);
-//            if(t==key.size())t=0;
-//            t+=1;
-//        }
-//    }
+
     cout <<endl<<endl<<"Key:";
-    // TODO : USE SHA256 FOR KEY
-    // Key Expansion //
+
     if(key.size() < M.size())
     {
         logfile << "Main: input Key less than Message size.. regenerating key.." <<endl;
@@ -297,7 +310,6 @@ int main()
     for (std::size_t i = 0; i < M.size()*8; ++i)
     {
         K[i] = bitKn[b].test(i%8); // check the values in bitKn
-        Kd[i] = K[i];   // transfer the values to Kd as shadow
         if(i%8 == 0)b+=1; // Increase b at every 8 iterations
     }
     logfile << "Main: IV transferred to bigger world.." <<endl;
@@ -336,6 +348,7 @@ int main()
         evolve57630b(K,M.size()); // This is done over the entire world doesnt need another loop
         gens = gens +1;
         cout << endl << "Your new generation number: " <<gens <<endl;
+        cout << endl << "NOTE YOUR NEW GENERATION NUMBER !" << endl;
     }
 #ifdef KEYEVOLVEOUT // Only Create an instance of keyout.txt if defined
     ofstream keyout;
@@ -358,7 +371,7 @@ int main()
     cout << "Encrypted message:";
     //XOR OPERATION ENCRYPTION
     int oncount=0;
-    int oncountone=0,oncounttwo=0;
+    //int oncountone=0,oncounttwo=0;
 #ifdef SHOW_Properties // This MUST be defined to perform poker cryptanalysis
     logfile << "Main: Show cryptanalysis defined.." <<endl;
     ofstream linearityfile;
@@ -367,10 +380,10 @@ int main()
     ofstream encfile;
     ofstream encbitfile;
 
-    linearityfile.open("nonlinearitydata.txt");
-    linearityfiletwo.open("nonlinearitydata8.txt");
-    pokerfile.open("pokerfile.txt");
-    encfile.open("encfile.txt");
+    //linearityfile.open("nonlinearitydata.txt");
+    //linearityfiletwo.open("nonlinearitydata8.txt");
+    //pokerfile.open("pokerfile.txt");
+    encfile.open(fname.c_str());
     encbitfile.open("encbitfile.txt");
 
     logfile << "Main: Opening files complete.." <<endl;
@@ -386,10 +399,10 @@ int main()
         //oncounttwo += nonlinearityhalftwo(bitKn[ic]);
 #ifdef SHOW_Properties
         //TEST LINEARITY
-        linearityfile << (nonlinearityhalfone(bitKn[ic])*100)/(4) <<endl;
-        linearityfile << (nonlinearityhalftwo(bitKn[ic])*100)/(4) <<endl;
-        linearityfiletwo << (nonlinearity(bitKn[ic])*100)/(8) <<endl;
-        pokertest(bitKn[ic]);
+        //linearityfile << (nonlinearityhalfone(bitKn[ic])*100)/(4) <<endl;
+        //linearityfile << (nonlinearityhalftwo(bitKn[ic])*100)/(4) <<endl;
+        //linearityfiletwo << (nonlinearity(bitKn[ic])*100)/(8) <<endl;
+        //pokertest(bitKn[ic]);
         encfile << char(bitMs[ic].to_ulong());
         encbitfile << bitMs[ic].to_string();
 #endif // SHOW_Properties
@@ -411,125 +424,31 @@ int main()
     }
 
 #ifdef SHOW_Properties // Poker test results
-    logfile << "Main: Outputting properties.." <<endl;
-    cout <<endl<< "Poker Test results:" << endl;
-    for(int iw=0; iw<16; iw++)
-    {
-        pokerfile << statArr[iw] << endl;
-        cout << iw <<" : " << statArr[iw] <<endl;
-    }
-
-    cout <<endl <<"Monobits:"<<monoout<<endl;
-    //printf("%.10f",monoout);
-    cout <<endl <<"Monobits2:" << ((oncount)*100)/(8*M.size()) << endl;
-    linearityfile.close();
-    linearityfiletwo.close();
-    pokerfile.close();
+//    logfile << "Main: Outputting properties.." <<endl;
+//    cout <<endl<< "Poker Test results:" << endl;
+//    for(int iw=0; iw<16; iw++)
+//    {
+//        pokerfile << statArr[iw] << endl;
+//        cout << iw <<" : " << statArr[iw] <<endl;
+//    }
+//
+//    cout <<endl <<"Monobits:"<<monoout<<endl;
+//    //printf("%.10f",monoout);
+//    cout <<endl <<"Monobits2:" << ((oncount)*100)/(8*M.size()) << endl;
+//    linearityfile.close();
+//    linearityfiletwo.close();
+//    pokerfile.close();
     encfile.close();
     encbitfile.close();
 #endif // SHOW_Properties
+    if(pass==false)system("CLS");
     }while(pass==false);
-    //DECRYPTION
     logfile << "Main: Files are closed" <<endl;
-#ifdef FAST_Decrypt
-    logfile << "Main: Fast decryption defined using the already generated key on memory.." <<endl;
-    cout <<endl<<endl<< "Decrypted message:";
-    for(ic=0; ic<M.size(); ic++)
-    {
-        for (int i = 0; i <= 7; i++)
-            bitMd[ic][i] = bitMs[ic][i] ^ bitKn[ic][i]; // XOR EVOLVED KEY WITH THE ENCRYPTED MESSAGE
 
-        cout << char(bitMd[ic].to_ulong()) ;    // DECRYPTED OUTPUT
-    }
-    logfile << "Main: Decryption finished running.." <<endl;
-    ////////////////////////////////////////////////
-#else
-    logfile << "Main: Manual decryption defined starting decryption using the previously input key.." <<endl;
-    ofstream decfile;
-    decfile.open("decfile.txt");
-    for(int gen=0; gen<gens; gen++)
-    {
-        evolve57630b(Kd,M.size()); // explained in encryption
-#ifdef DEBUG_MODE
-        for(ic=0; ic<M.size(); ic++)
-        {
-            // Use deprecated functions here if encryted with deprecated functions
-
-            cout << bitM[ic].to_string() <<"                    "<<bitK[ic].to_string()<<endl;
-
-        }
-        for(ic=0; ic<M.size(); ic++)cout << char(bitM[ic].to_ulong()); // OUTPUT STRING EQUIVALENT
-        cout<<"                    ";
-        for(ic=0; ic<key.size(); ic++)cout << char(bitK[ic].to_ulong());
-        cout <<endl;
-        // system ("CLS"); // COOL
-#endif // DEBUG_MODE
-    }
-
-    by=0;
-    // SPLIT THE WORLD IN SMALLER WORLDS
-    for (int i = 0; i <= nbits-1; i++)
-    {
-        bitK[by].set(i%8,Kd.test(i));
-
-        if(i%8==0)by+=1;
-    }
-    logfile << "Main: Decrypting message and outputting to the screen.." <<endl;
-    cout <<endl<<endl<< "Decrypted message:";
-    for(ic=0; ic<M.size(); ic++)
-    {
-        for (int i = 0; i <= 7; i++)
-            bitMd[ic][i] = bitMs[ic][i] ^ bitK[ic][i]; // XOR EVOLVED KEY WITH THE ENCRYPTED MESSAGE
-
-        cout << char(bitMd[ic].to_ulong()) ;    // DECRYPTED OUTPUT
-        decfile << char(bitMd[ic].to_ulong());
-    }
-#endif
     logfile << "Main:finished running.." <<endl;
     logfile.close();
     cout << endl << endl<< "Encrypt & Decrypt Complete Press Enter Any Key to Continue..."<<endl;
     cin >> q ;
     return 0;
 }
-/* DEPRECATED FUNCTIONS: DO NOT USE UNLESS YOU KNOW WHAT YOU ARE DOING
-void evolve57630(std::bitset<8> &s)
-{
-    int i;
-    std::bitset<8> t;
-    logfile << "evolve57630: Evolving..." <<endl;
-    // RULE 57630 4N
-    t[0] = s[6] ^ s[7] ^ (s[0] | s[1]);
-    t[1] = s[7] ^ s[0] ^ (s[1] | s[2]);
-    t[7] = s[5] ^ s[6] ^ (s[7] | s[0]);
-    for (i = 2; i < 7; i++)
-    {
-        t[i] = s[i-2] ^ s[i-1] ^ (s[i] | s[i+1]);
 
-
-    }
-
-    // REWRITE TO ARRAY
-    for (i = 0; i <= 7; i++)s[i] = t[i];
-}
-////////////////////TODO DO NOT USE
-void devolve57630(std::bitset<8> &s)
-{
-    int i;
-    std::bitset<8> t;
-    logfile << "devolve57630: 'd'Evolving.." <<endl;
-    // RULE 57630 4N
-    t[0] = s[6] ^ s[7] ^ (s[0] | s[1]);
-    t[1] = s[7] ^ s[0] ^ (s[1] | s[2]);
-    t[7] = s[5] ^ s[6] ^ (s[6] | s[0]);
-    for (i = 2; i < 7; i++)
-    {
-        t[i] = s[i-2] ^ s[i-1] ^ (s[i] | s[i+1]);
-        //t[i] = s[i + 1] ^ (s[i] | s[i+1])).
-
-    }
-
-    // REWRITE TO ARRAY
-    for (i = 0; i <= 7; i++)s[i] = t[i];
-}
-///////////////////TODO
-*/
