@@ -3,6 +3,8 @@ XOR Based Encryption Using Cellular Automata
 *Use GNU GCC Compiler
 - "BazcryptNEWO.exe" Creates a new encrypted file and keeps the original file. 
 - "BazcryptREP.exe" Replaces the original file with the encrypted version.
+- "BazCrypt_HardCoded.exe" DEMO Executable with predetermined text and pass and evolution
+- "BazCrypt_UserInput.exe" DEMO Executable allows user input also outputs cryptographic analysis results
 - See AlphaRelease Branch for the source code of the release, for analysis use the master branch.
 # Compiling the program using windows
 - Use MINGW Library for compiling the program, download from here https://sourceforge.net/projects/mingw/files/
