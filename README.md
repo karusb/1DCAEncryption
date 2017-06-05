@@ -1,6 +1,9 @@
 # 1DCAEncryption
 XOR Based Encryption Using Cellular Automata
 *Use GNU GCC Compiler
+- "BazcryptNEWO.exe" Creates a new encrypted file and keeps the original file. 
+- "BazcryptREP.exe" Replaces the original file with the encrypted version.
+- See AlphaRelease Branch for the source code of the release, for analysis use the master branch.
 # Compiling the program using windows
 - Use MINGW Library for compiling the program, download from here https://sourceforge.net/projects/mingw/files/
 - If IDE is not available to compile, run mingw32-g++.exe with following commands:" -Wall -fexceptions -g  -c C:\Users\your_source_directory\main.cpp -o main.o" to create an object
