@@ -1,6 +1,10 @@
 # 1DCAEncryption
 XOR Based Encryption Using Cellular Automata
 *Use GNU GCC Compiler
+# Release
+- "Bazcrypt.exe" All features, described in README.txt
+- Example .bat file given for one click encryptions :)
+# Alpha
 - "BazcryptNEWO.exe" Creates a new encrypted file and keeps the original file. 
 - "BazcryptREP.exe" Replaces the original file with the encrypted version.
 - "BazCrypt_HardCoded.exe" DEMO Executable with predetermined text and pass and evolution
