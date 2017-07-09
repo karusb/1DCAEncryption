@@ -14,6 +14,17 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+------------------------------BAZCRYPT 1DCA Encryption --------------------------
+This free program allows you to encrypt any text based data with your given
+ generation and password. You have to remember your generation and password to 
+restore your data to its original state. If you would like to keep your original 
+file and generate a new encrypted file, use "-n" parameter. Example batch files 
+are given as RUN-BazcryptNEW.bat and RUN-Bazcrypt.bat. You need to edit the .bat
+files to your purpose.
+
+Example:Bazcrypt.exe -f myfile.txt -g 1502 -p yourpassword
+
+To decrypt a file, use the same commands that were are previously used.
 ---------------------------------------------------------------------------------
 ----------------------------------COMMANDS---------------------------------------
 ----------------- MUST COMMANDS -------------------------------------------------

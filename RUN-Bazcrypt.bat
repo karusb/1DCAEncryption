@@ -1,1 +1,1 @@
-Bazcrypt.exe -f p.txt -g 100 -p alicanbayram -R  -n c.txt 
+Bazcrypt.exe -f pty.txt -g 100 -p alicanbayram 
