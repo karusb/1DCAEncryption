@@ -10,6 +10,3 @@ main: main.cpp Makefile
 
 clean:
 	$(RM) $(ALL) *.o
-
-test: all
-	bash test
