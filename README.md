@@ -1,7 +1,7 @@
 # 1DCAEncryption
 XOR Based Encryption Using Cellular Automata
 [![Build Status](https://travis-ci.org/karusb/1DCAEncryption.svg?branch=master)](https://travis-ci.org/karusb/1DCAEncryption)
-*Use GNU GCC Compiler
+
 # Release
 - "Bazcrypt.exe" All features, described in README.txt 
 - [Download Windows x64 version 1.1](https://github.com/karusb/1DCAEncryption/raw/master/Bazcrypt-Windows_x64-v1.1.rar) 
