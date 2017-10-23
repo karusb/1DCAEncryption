@@ -273,9 +273,9 @@ int main(int argc,char *argv[])
 
     if(logtrail)logfile << "Main:  Message ASCII to boolean conversions complete" <<endl;
 
-    cout <<endl<<endl<<"Key:";
+    if(readback)cout <<endl<<endl<<"Key:";
 
-    if(readback)if(key.size() < M.size())
+    if(key.size() < M.size())
         {
             if(logtrail)logfile << "Main: input Key less than Message size.. regenerating key.." <<endl;
             for(unsigned int i=0; i<M.size(); i++)
