@@ -4,7 +4,7 @@ XOR Based Encryption Using Cellular Automata
 
 # Release
 - "Bazcrypt.exe" All features, described in README.txt 
-- [Download Windows x64 version 1.1](https://github.com/karusb/1DCAEncryption/raw/master/Bazcrypt-Windows_x64-v1.1.rar) 
+- [Download Windows x64 V1.2](https://github.com/karusb/1DCAEncryption/raw/master/Bazcrypt-Windows_x64-v1.2.zip)
 - Example .bat file given for one click encryptions :)
 # Alpha
 - "BazcryptNEWO.exe" Creates a new encrypted file and keeps the original file. 
